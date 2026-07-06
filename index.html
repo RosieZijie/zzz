@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>意大利奥地利自驾行程单 2026.07.27-08.12</title>
+  <style>
+    :root {
+      --ink: #243038;
+      --muted: #63717a;
+      --line: #d9e1e6;
+      --blue: #1f6fb8;
+      --green: #2b8a70;
+      --orange: #d66b3d;
+      --gold: #b68a18;
+      --bg: #f6f3ed;
+      --card: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--bg);
+      font-family: Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+      line-height: 1.45;
+    }
+    .page {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 32px 24px 48px;
+    }
+    .hero {
+      background: linear-gradient(135deg, #ffffff 0%, #edf6fb 100%);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 28px 32px;
+      margin-bottom: 22px;
+    }
+    h1 {
+      margin: 0 0 10px;
+      font-size: 32px;
+      letter-spacing: 0;
+    }
+    h2 {
+      margin: 28px 0 14px;
+      font-size: 22px;
+    }
+    .subtitle {
+      color: var(--muted);
+      font-size: 17px;
+    }
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .badge {
+      border-radius: 999px;
+      padding: 7px 12px;
+      background: #fff;
+      border: 1px solid var(--line);
+      color: var(--ink);
+      font-size: 14px;
+      white-space: nowrap;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .stat {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 16px;
+    }
+    .stat strong {
+      display: block;
+      font-size: 24px;
+      margin-bottom: 4px;
+    }
+    .stat span { color: var(--muted); font-size: 14px; }
+    .route {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 18px;
+      overflow-x: auto;
+      margin-bottom: 22px;
+    }
+    .route-line {
+      display: flex;
+      align-items: stretch;
+      min-width: 980px;
+    }
+    .stop {
+      position: relative;
+      flex: 1;
+      padding: 0 8px;
+      text-align: center;
+    }
+    .stop:before {
+      content: "";
+      position: absolute;
+      top: 20px;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--line);
+      z-index: 0;
+    }
+    .stop:first-child:before { left: 50%; }
+    .stop:last-child:before { right: 50%; }
+    .dot {
+      position: relative;
+      z-index: 1;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      margin: 0 auto 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 700;
+      font-size: 14px;
+      background: var(--blue);
+      border: 4px solid #fff;
+      box-shadow: 0 0 0 1px var(--line);
+    }
+    .dot.green { background: var(--green); }
+    .dot.orange { background: var(--orange); }
+    .dot.gold { background: var(--gold); }
+    .stop b {
+      display: block;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+    .stop small {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 22px;
+    }
+    th, td {
+      padding: 11px 12px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      text-align: left;
+      font-size: 14px;
+    }
+    th {
+      background: #eef4f7;
+      color: #263238;
+      font-size: 13px;
+    }
+    tr:last-child td { border-bottom: none; }
+    .date { white-space: nowrap; font-weight: 700; }
+    .overnight { color: var(--green); font-weight: 700; }
+    .drive { color: var(--orange); font-weight: 700; }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px 18px;
+      break-inside: avoid;
+    }
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 18px;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .card h3 span {
+      color: var(--muted);
+      font-weight: 400;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+    .timeline {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .timeline li {
+      display: grid;
+      grid-template-columns: 96px 1fr;
+      gap: 8px;
+      padding: 7px 0;
+      border-top: 1px dashed #dfe5e8;
+      font-size: 14px;
+    }
+    .timeline li:first-child { border-top: none; }
+    .time {
+      color: var(--blue);
+      font-weight: 700;
+    }
+    .note {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 10px;
+    }
+    .warning {
+      background: #fff7e6;
+      border: 1px solid #ecd49c;
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin: 20px 0;
+      color: #5e4810;
+    }
+    @media print {
+      body { background: #fff; }
+      .page { max-width: none; padding: 18px; }
+      .hero, .route, table, .card, .stat { box-shadow: none; }
+      .cards { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 820px) {
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .cards { grid-template-columns: 1fr; }
+      .page { padding: 20px 14px 36px; }
+      h1 { font-size: 26px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <h1>意大利 + 奥地利自驾行程单</h1>
+      <div class="subtitle">2026年7月27日-8月12日｜罗马进出｜自驾北上至奥地利湖区与维也纳，再分段返回罗马机场</div>
+      <div class="badges">
+        <span class="badge">入境：罗马 FCO</span>
+        <span class="badge">出境：罗马 FCO</span>
+        <span class="badge">交通：租车自驾</span>
+        <span class="badge">跨境：意大利 → 奥地利 → 意大利</span>
+        <span class="badge">最后一晚：FCO机场旁酒店已订</span>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="stat"><strong>17天</strong><span>含香港-伊斯坦布尔中转日</span></div>
+      <div class="stat"><strong>13晚</strong><span>意大利/奥地利住宿</span></div>
+      <div class="stat"><strong>约3,000km</strong><span>全程自驾估算</span></div>
+      <div class="stat"><strong>2国</strong><span>意大利、奥地利</span></div>
+    </section>
+
+    <section class="route">
+      <div class="route-line">
+        <div class="stop"><div class="dot">D1</div><b>罗马</b><small>落地取车</small></div>
+        <div class="stop"><div class="dot">D3</div><b>Orvieto</b><small>悬崖小镇</small></div>
+        <div class="stop"><div class="dot">D3</div><b>佛罗伦萨</b><small>住1晚</small></div>
+        <div class="stop"><div class="dot">D4</div><b>威尼斯</b><small>住3晚</small></div>
+        <div class="stop"><div class="dot green">D7</div><b>Ortisei</b><small>多洛米蒂</small></div>
+        <div class="stop"><div class="dot green">D9</div><b>Innsbruck</b><small>阿尔卑斯城市</small></div>
+        <div class="stop"><div class="dot gold">D10</div><b>Mondsee</b><small>湖区住宿</small></div>
+        <div class="stop"><div class="dot gold">D11</div><b>Wolfgangsee</b><small>音乐之声湖区</small></div>
+        <div class="stop"><div class="dot gold">D12</div><b>Vienna</b><small>维也纳</small></div>
+        <div class="stop"><div class="dot orange">D14</div><b>Padova/Mestre</b><small>返程中转</small></div>
+        <div class="stop"><div class="dot orange">D15</div><b>FCO</b><small>机场酒店</small></div>
+      </div>
+    </section>
+
+    <h2>签证式总览</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>日期</th>
+          <th>城市/路线</th>
+          <th>交通与车程</th>
+          <th>主要行程</th>
+          <th>住宿</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="date">7/27 周一<br>Day0</td>
+          <td>香港 → 伊斯坦布尔</td>
+          <td>飞机：08:55-15:20</td>
+          <td>伊斯坦布尔中转，视体力短逛蓝色清真寺/大巴扎</td>
+          <td class="overnight">伊斯坦布尔机场酒店｜待填</td>
+        </tr>
+        <tr>
+          <td class="date">7/28 周二<br>Day1</td>
+          <td>伊斯坦布尔 → 罗马</td>
+          <td>飞机抵达；FCO取车；市内不自驾</td>
+          <td>抵达罗马，取车入住；傍晚特雷维喷泉/西班牙阶梯轻逛</td>
+          <td class="overnight">罗马 Prati/Cipro/Gregorio VII｜待填</td>
+        </tr>
+        <tr>
+          <td class="date">7/29 周三<br>Day2</td>
+          <td>罗马</td>
+          <td>不开车，公共交通/打车</td>
+          <td>08:30 梵蒂冈；傍晚斗兽场日落票</td>
+          <td class="overnight">罗马同酒店｜待填</td>
+        </tr>
+        <tr>
+          <td class="date">7/30 周四<br>Day3</td>
+          <td>罗马 → Orvieto → 佛罗伦萨</td>
+          <td class="drive">约300km｜纯开3.5h｜体感4.5-5h</td>
+          <td>Orvieto悬崖小镇；傍晚佛罗伦萨外围入住</td>
+          <td class="overnight">佛罗伦萨外围/Scandicci/Novoli｜待填</td>
+        </tr>
+        <tr>
+          <td class="date">7/31 周五<br>Day4</td>
+          <td>佛罗伦萨 → 威尼斯/Mestre</td>
+          <td class="drive">约260km｜纯开3h｜夜间体感3.5-4h</td>
+          <td>白天佛罗伦萨游览；傍晚/晚上北上威尼斯；深夜接伦敦抵达朋友</td>
+          <td class="overnight">Mestre/VCE机场/Piazzale Roma周边｜待填</td>
+        </tr>
+        <tr>
+          <td class="date">8/01 周六<br>Day5</td>
+          <td>威尼斯</td>
+          <td>不开车，水上巴士/步行</td>
+          <td>朋友加入后威尼斯主岛经典线：圣马可、总督宫、叹息桥、里亚托桥</td>
+          <td class="overnight">威尼斯同酒店｜待填</td>
+        </tr>
+        <tr>
+          <td class="date">8/02 周日<br>Day6</td>
+          <td>威尼斯 → Burano → 威尼斯</td>
+          <td>不开车；轮渡往返约2h</td>
+          <td>Burano彩色岛；傍晚威尼斯主岛轻松散步</td>
+          <td class="overnight">威尼斯同酒店｜待填</td>
+        </tr>
+        <tr>
+          <td class="date">8/03 周一<br>Day7</td>
+          <td>威尼斯 → Ortisei → 富内斯山谷</td>
+          <td class="drive">约280-320km｜体感5-6h含富内斯往返</td>
+          <td>进多洛米蒂；下午Santa Maddalena/富内斯山谷</td>
+          <td class="overnight">Ortisei/Santa Cristina/Selva｜待填</td>
+        </tr>
+        <tr>
+          <td class="date">8/04 周二<br>Day8</td>
+          <td>多洛米蒂</td>
+          <td>山区短途/缆车</td>
+          <td>Seceda刀锋山；休斯高原 Alpe di Siusi</td>
+          <td class="overnight">Ortisei同酒店｜待填</td>
+        </tr>
+        <tr>
+          <td class="date">8/05 周三<br>Day9</td>
+          <td>Ortisei → Klausen/Bressanone → Innsbruck</td>
+          <td class="drive">约150km｜纯开2.5h｜体感3-4h</td>
+          <td>慢慢下山；小镇短停；傍晚Innsbruck老城</td>
+          <td class="overnight">Innsbruck火车站/老城边缘｜待填</td>
+        </tr>
+        <tr>
+          <td class="date">8/06 周四<br>Day10</td>
+          <td>Innsbruck → Salzburg → Mondsee</td>
+          <td class="drive">约220-240km｜纯开2.5-3h｜体感3.5-4h</td>
+          <td>Salzburg老城、Mirabell；傍晚入住Mondsee</td>
+          <td class="overnight">Mondsee/Thalgau/Hof bei Salzburg｜待填</td>
+        </tr>
+        <tr>
+          <td class="date">8/07 周五<br>Day11</td>
+          <td>Mondsee → St. Gilgen → Wolfgangsee → Mondsee</td>
+          <td class="drive">约70-110km｜体感1.5-2.5h</td>
+          <td>音乐之声湖区：Mondsee、St. Gilgen、Wolfgangsee</td>
+          <td class="overnight">Mondsee同酒店｜待填</td>
+        </tr>
+        <tr>
+          <td class="date">8/08 周六<br>Day12</td>
+          <td>Mondsee → Bad Ischl → Gosausee → Vienna</td>
+          <td class="drive">约360-400km｜纯开5h｜体感7-8h</td>
+          <td>Kaiservilla皇帝别墅；Gosausee雪山湖；傍晚维也纳</td>
+          <td class="overnight">Vienna Hauptbahnhof/Belvedere/Landstrasse｜待填</td>
+        </tr>
+        <tr>
+          <td class="date">8/09 周日<br>Day13</td>
+          <td>维也纳</td>
+          <td>不开车，地铁/步行</td>
+          <td>美泉宫、霍夫堡、老城、咖啡馆</td>
+          <td class="overnight">Vienna同酒店｜待填</td>
+        </tr>
+        <tr>
+          <td class="date">8/10 周一<br>Day14</td>
+          <td>Vienna → Padova/Mestre</td>
+          <td class="drive">约600-630km｜纯开6.5h｜体感8-9h</td>
+          <td>返程长途日，只安排服务区/午餐休息</td>
+          <td class="overnight">Padova或Mestre高速口附近｜待填</td>
+        </tr>
+        <tr>
+          <td class="date">8/11 周二<br>Day15</td>
+          <td>Padova/Mestre → Rome FCO</td>
+          <td class="drive">约520-550km｜纯开5.5h｜体感6.5-7.5h</td>
+          <td>返程至罗马机场；加油还车；入住机场旁酒店</td>
+          <td class="overnight">FCO机场旁酒店｜已订，待填酒店名</td>
+        </tr>
+        <tr>
+          <td class="date">8/12 周三<br>Day16</td>
+          <td>罗马 FCO → 伊斯坦布尔 → 香港</td>
+          <td>飞机：10:40起飞</td>
+          <td>建议07:15前到航站楼；办理托运、出境、候机</td>
+          <td>-</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="warning">
+      <strong>重要备注：</strong>自驾车程为规划估算，8月旺季、停车、服务区休息、ZTL避让、边境/收费路段都会增加体感时间。奥地利高速需购买ASFINAG 10日数字vignette；Brenner/A13等特殊路段可能另收费。
+    </div>
+
+    <h2>每日小时级执行表</h2>
+    <section class="cards">
+      <article class="card">
+        <h3>7/27 Day0｜香港 → 伊斯坦布尔 <span>飞行日</span></h3>
+        <ul class="timeline">
+          <li><span class="time">08:55</span><span>香港起飞</span></li>
+          <li><span class="time">15:20</span><span>抵达伊斯坦布尔</span></li>
+          <li><span class="time">17:00-20:30</span><span>可选短逛蓝色清真寺/大巴扎，视转机体力决定</span></li>
+          <li><span class="time">夜间</span><span>入住机场酒店</span></li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h3>7/28 Day1｜罗马落地取车 <span>住罗马</span></h3>
+        <ul class="timeline">
+          <li><span class="time">中午-14:10</span><span>伊斯坦布尔飞罗马，抵达FCO</span></li>
+          <li><span class="time">15:00-16:30</span><span>取车、检查车况、确认跨境奥地利许可</span></li>
+          <li><span class="time">17:00</span><span>入住罗马Prati/Cipro/Gregorio VII一带，车辆停酒店/车库</span></li>
+          <li><span class="time">18:30-21:00</span><span>轻逛特雷维喷泉、西班牙阶梯，公共交通/打车</span></li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h3>7/29 Day2｜梵蒂冈 + 斗兽场 <span>住罗马</span></h3>
+        <ul class="timeline">
+          <li><span class="time">07:30</span><span>从酒店出发去梵蒂冈</span></li>
+          <li><span class="time">08:30-11:30</span><span>梵蒂冈博物馆、西斯廷礼拜堂</span></li>
+          <li><span class="time">11:30-12:30</span><span>圣彼得广场/大教堂外观，排队短再进入</span></li>
+          <li><span class="time">12:30-15:30</span><span>午餐 + 回酒店避暑休息</span></li>
+          <li><span class="time">16:30-20:00</span><span>前往斗兽场，使用日落前票参观斗兽场/周边</span></li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h3>7/30 Day3｜罗马 → Orvieto → 佛罗伦萨 <span>约300km</span></h3>
+        <ul class="timeline">
+          <li><span class="time">09:00</span><span>罗马出发，避开老城ZTL</span></li>
+          <li><span class="time">10:30-12:30</span><span>Orvieto悬崖小镇，午餐/观景</span></li>
+          <li><span class="time">13:30-16:30</span><span>开往佛罗伦萨外围酒店</span></li>
+          <li><span class="time">17:30-19:00</span><span>米开朗基罗广场日落或酒店附近晚餐</span></li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h3>7/31 Day4｜佛罗伦萨 → 威尼斯，深夜接朋友 <span>约260km</span></h3>
+        <ul class="timeline">
+          <li><span class="time">09:00-12:00</span><span>乌菲兹美术馆或大卫原作二选一</span></li>
+          <li><span class="time">12:00-14:00</span><span>老桥、领主广场、午餐</span></li>
+          <li><span class="time">14:00-16:30</span><span>圣母百花大教堂外观、城区散步；回酒店取车/行李</span></li>
+          <li><span class="time">17:30-18:30</span><span>简单晚餐或打包食物，准备夜间北上</span></li>
+          <li><span class="time">18:30-22:30</span><span>佛罗伦萨外围 → 威尼斯/Mestre/VCE机场方向，途中服务区休息</span></li>
+          <li><span class="time">22:30-23:30</span><span>入住/停车/整理；按航班时间前往VCE机场或车站接伦敦抵达朋友</span></li>
+          <li><span class="time">深夜</span><span>接朋友后回酒店休息，车辆停酒店或正规停车场</span></li>
+        </ul>
+        <p class="note">如果朋友落地很晚，建议酒店订在Mestre、VCE机场附近或Piazzale Roma/Tronchetto交通方便区域，避免深夜进出威尼斯主岛太折腾。</p>
+      </article>
+
+      <article class="card">
+        <h3>8/01 Day5｜威尼斯主岛经典线 <span>朋友加入</span></h3>
+        <ul class="timeline">
+          <li><span class="time">09:30-10:30</span><span>晚接机后允许晚一点出门；从酒店前往主岛</span></li>
+          <li><span class="time">10:30-13:00</span><span>圣马可广场、圣马可大教堂、叹息桥</span></li>
+          <li><span class="time">13:00-14:30</span><span>午餐/咖啡休息</span></li>
+          <li><span class="time">14:30-17:00</span><span>总督宫或里亚托桥二选一重点游览</span></li>
+          <li><span class="time">17:00-19:00</span><span>大运河水上巴士、日落散步</span></li>
+          <li><span class="time">夜间</span><span>住威尼斯/Mestre，车辆继续停放不动</span></li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h3>8/02 Day6｜Burano彩色岛 <span>不开车</span></h3>
+        <ul class="timeline">
+          <li><span class="time">09:00-10:00</span><span>轮渡前往Burano</span></li>
+          <li><span class="time">10:00-13:00</span><span>彩色房屋、蕾丝工坊、拍照</span></li>
+          <li><span class="time">13:00-14:30</span><span>岛上午餐</span></li>
+          <li><span class="time">15:30-17:30</span><span>返回主岛，可补里亚托桥/小巷散步</span></li>
+          <li><span class="time">18:00以后</span><span>早点回酒店休息，为第二天进多洛米蒂留体力</span></li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h3>8/03 Day7｜威尼斯 → Ortisei + 富内斯 <span>约280-320km</span></h3>
+        <ul class="timeline">
+          <li><span class="time">08:30</span><span>威尼斯/Mestre出发</span></li>
+          <li><span class="time">12:30</span><span>抵达Ortisei，午餐/入住</span></li>
+          <li><span class="time">15:00-18:30</span><span>富内斯山谷、Santa Maddalena教堂</span></li>
+          <li><span class="time">19:30</span><span>返回Ortisei晚餐</span></li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h3>8/04 Day8｜Seceda + 休斯高原 <span>山区日</span></h3>
+        <ul class="timeline">
+          <li><span class="time">08:30-13:00</span><span>Seceda缆车与刀锋山山脊徒步</span></li>
+          <li><span class="time">13:00-14:30</span><span>午餐/回镇休息</span></li>
+          <li><span class="time">15:00-18:00</span><span>休斯高原 Alpe di Siusi 高山草甸</span></li>
+          <li><span class="time">夜间</span><span>Ortisei晚餐</span></li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h3>8/05 Day9｜Ortisei → Innsbruck <span>约150km</span></h3>
+        <ul class="timeline">
+          <li><span class="time">09:30</span><span>Ortisei退房，下山</span></li>
+          <li><span class="time">10:30-12:00</span><span>Klausen或Bressanone短停</span></li>
+          <li><span class="time">12:00-14:30</span><span>继续开往Innsbruck</span></li>
+          <li><span class="time">16:00-19:00</span><span>金色屋顶、老城、晚餐</span></li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h3>8/06 Day10｜Innsbruck → Salzburg → Mondsee <span>约220-240km</span></h3>
+        <ul class="timeline">
+          <li><span class="time">08:30</span><span>Innsbruck出发</span></li>
+          <li><span class="time">10:45</span><span>抵达Salzburg外围停车</span></li>
+          <li><span class="time">11:15-15:00</span><span>Salzburg老城、粮食胡同、Mirabell花园</span></li>
+          <li><span class="time">15:15-16:00</span><span>可选Hellbrunn玻璃亭</span></li>
+          <li><span class="time">16:00-17:00</span><span>开往Mondsee并入住</span></li>
+          <li><span class="time">17:30-19:00</span><span>Mondsee湖边、婚礼教堂</span></li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h3>8/07 Day11｜Mondsee湖区环线 <span>约70-110km</span></h3>
+        <ul class="timeline">
+          <li><span class="time">08:30-09:00</span><span>Mondsee湖边晨间散步</span></li>
+          <li><span class="time">09:00-09:30</span><span>开往St. Gilgen</span></li>
+          <li><span class="time">09:30-12:00</span><span>St. Gilgen湖边小镇、Wolfgangsee湖景</span></li>
+          <li><span class="time">12:00-13:15</span><span>午餐</span></li>
+          <li><span class="time">13:15-16:30</span><span>Wolfgangsee/St. Wolfgang，可坐船或湖边咖啡</span></li>
+          <li><span class="time">16:30-18:00</span><span>返回Mondsee，晚餐</span></li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h3>8/08 Day12｜Mondsee → Vienna <span>约360-400km</span></h3>
+        <ul class="timeline">
+          <li><span class="time">08:00</span><span>Mondsee出发</span></li>
+          <li><span class="time">09:00-11:00</span><span>Bad Ischl Kaiservilla皇帝别墅</span></li>
+          <li><span class="time">12:00-14:30</span><span>Gosausee雪山湖，天气差则取消</span></li>
+          <li><span class="time">14:30-19:00</span><span>开往Vienna，途中服务区休息</span></li>
+          <li><span class="time">夜间</span><span>维也纳入住，简单晚餐</span></li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h3>8/09 Day13｜维也纳 <span>不开车</span></h3>
+        <ul class="timeline">
+          <li><span class="time">09:00-12:30</span><span>美泉宫 Schonbrunn</span></li>
+          <li><span class="time">12:30-14:30</span><span>午餐/咖啡</span></li>
+          <li><span class="time">14:30-17:30</span><span>霍夫堡、老城、国家歌剧院外观</span></li>
+          <li><span class="time">17:30-19:00</span><span>中央咖啡馆或萨赫咖啡</span></li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h3>8/10 Day14｜Vienna → Padova/Mestre <span>约600-630km</span></h3>
+        <ul class="timeline">
+          <li><span class="time">08:00</span><span>Vienna出发</span></li>
+          <li><span class="time">11:30-12:30</span><span>Graz/服务区午餐休息</span></li>
+          <li><span class="time">15:00-15:45</span><span>Villach/边境前后休息</span></li>
+          <li><span class="time">18:30-19:30</span><span>抵达Padova/Mestre，入住高速口附近酒店</span></li>
+        </ul>
+        <p class="note">这天只负责返程，不建议安排正式景点。</p>
+      </article>
+
+      <article class="card">
+        <h3>8/11 Day15｜Padova/Mestre → Rome FCO <span>约520-550km</span></h3>
+        <ul class="timeline">
+          <li><span class="time">09:00</span><span>出发回罗马机场</span></li>
+          <li><span class="time">11:00-12:00</span><span>Bologna附近服务区休息/午餐</span></li>
+          <li><span class="time">14:30-15:00</span><span>中途咖啡休息</span></li>
+          <li><span class="time">16:30-18:00</span><span>抵达FCO附近，加油、还车</span></li>
+          <li><span class="time">19:00</span><span>入住机场旁酒店，整理行李</span></li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h3>8/12 Day16｜罗马返程 <span>10:40起飞</span></h3>
+        <ul class="timeline">
+          <li><span class="time">06:45</span><span>起床/退房</span></li>
+          <li><span class="time">07:15</span><span>抵达T3航站楼更稳</span></li>
+          <li><span class="time">07:30-09:00</span><span>托运、安检、出境</span></li>
+          <li><span class="time">10:40</span><span>罗马FCO起飞，经伊斯坦布尔返回香港</span></li>
+        </ul>
+      </article>
+    </section>
+  </main>
+</body>
+</html>
